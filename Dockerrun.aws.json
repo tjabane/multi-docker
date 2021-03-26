@@ -1,0 +1,36 @@
+{
+    "AWSEBDockerrunVersion": 3,
+    "ContainerDefinitions": [
+        {
+            "name": "client",
+            "image": "tjabane/multi-react",
+            "hostname": "client",
+            "essential": false
+        },
+        {
+            "name": "client",
+            "image": "tjabane/multi-server",
+            "hostname": "api",
+            "essential": false
+        },
+        {
+            "name": "worker",
+            "image": "tjabane/multi-worker",
+            "hostname": "worker",
+            "essential": false
+        },
+        {
+            "name": "nginx",
+            "image": "tjabane/multi-nginx",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort": 80
+                }
+            ],
+            "links": ["client", "server"]
+        }
+        
+    ]
+}
